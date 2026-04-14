@@ -60,6 +60,16 @@ body {
 }
 
 /* Contenitore Calendario */
+
+.main-content {
+    display: grid;
+    /* Due colonne larghe per i calendari e una stretta per il meteo */
+    grid-template-columns: 2fr 2fr 1fr; 
+    gap: 20px;
+    width: 100%;
+    max-width: 1500px; /* Allarghiamo la dashboard per far stare tutto */
+    margin-top: 20px;
+}
 .calendar-container, .weather-box {
     background: var(--card-bg);
     border-radius: 15px;
