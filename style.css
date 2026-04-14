@@ -17,7 +17,7 @@ body {
     align-items: center;
 }
 
-/* Griglia per gli orologi */
+/* Griglia per gli orologi in alto */
 .header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -50,52 +50,75 @@ body {
 .clock-time {
     font-size: 3rem;
     font-weight: bold;
-    margin: 10px 0;
-    font-variant-numeric: tabular-nums; /* Mantiene i numeri stabili */
+    margin: 5px 0;
+    color: #ffffff !important;
+    font-variant-numeric: tabular-nums;
 }
 
 .clock-date {
-    font-size: 1.1rem;
-    color: var(--text-dim);
+    font-size: 1rem;            /* Più piccola */
+    color: #ffffff !important;  /* Bianca */
+    font-weight: 300;           /* Sottile, non grassetto */
+    opacity: 0.9;
 }
 
-/* Contenitore Calendario */
-
+/* Griglia Principale: Calendario + Meteo */
 .main-content {
     display: grid;
-    /* Due colonne larghe per i calendari e una stretta per il meteo */
-    grid-template-columns: 2fr 2fr 1fr; 
+    /* 3fr per il calendario (più largo), 1fr per il meteo (più stretto) */
+    grid-template-columns: 3fr 1fr; 
     gap: 20px;
     width: 100%;
-    max-width: 1500px; /* Allarghiamo la dashboard per far stare tutto */
+    max-width: 1500px;
     margin-top: 20px;
+    align-items: start; /* Allinea gli elementi in alto */
 }
-.calendar-container, .weather-box {
+
+/* Contenitori generici per i blocchi sotto */
+.calendar-container, .weather {
     background: var(--card-bg);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-    height: 600px;
+    min-height: 600px; /* Altezza minima */
+}
+
+/* Stile specifico per l'area Meteo */
+.weather {
+    border-top: 4px solid var(--accent);
+    display: flex;
+    flex-direction: column;
 }
 
 .weather-content {
     padding: 15px;
-    /* WeatherWidget si adatta al contenitore */
+}
+
+/* Titolo sopra il meteo */
+.calendar-label {
+    padding: 10px;
+    text-align: center;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 iframe {
     width: 100%;
-    height: 650px;
+    height: 600px; /* Altezza fissa calendario */
     border: none;
-    display: block; /* Rimuove spazi bianchi sotto */
+    display: block;
 }
 
-/* Responsive per smartphone */
-@media (max-width: 650px) {
-    .header {
+/* Responsive: mette tutto in colonna su schermi piccoli */
+@media (max-width: 1000px) {
+    .main-content {
         grid-template-columns: 1fr;
     }
-    .clock-time {
-        font-size: 2.5rem;
+    .header {
+        grid-template-columns: 1fr;
+        max-width: 450px;
     }
 }
